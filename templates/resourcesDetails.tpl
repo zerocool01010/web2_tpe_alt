@@ -9,5 +9,8 @@
 </p>
 <p>Zona donde se encuentra: {$resource->zona}</p>
 
+<input placeholder="Introduce tu reseña de {$resource->recurso|lower}" type="text" size="110" id="review">
+<button type="submit" id="post">Enviar reseña!</button>
+{include file="js.tpl"}
 {include file="redirectHome.tpl"}
 {include file="footer.tpl"}
