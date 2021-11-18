@@ -26,7 +26,12 @@
         public function addResource($resource, $season, $id_zone) {
             $sentence = $this->db->prepare('INSERT INTO recursos(recurso, germinacion, id_zona) VALUES(?, ?, ?)');
             $sentence->execute([$resource, $season, $id_zone]);
-        } 
+        }
+        
+        public function addReview(){
+            $sentence = $this->db->prepare('INSERT INTO reseñas() VALUES(?)');
+            $sentence->execute();
+        }
 
         public function deleteResource($id) {
             $sentence = $this->db->prepare('DELETE FROM recursos WHERE id_recurso=?');
