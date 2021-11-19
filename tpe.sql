@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2021 a las 01:28:50
+-- Tiempo de generación: 19-11-2021 a las 17:31:44
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -41,13 +41,35 @@ CREATE TABLE `recursos` (
 INSERT INTO `recursos` (`id_recurso`, `recurso`, `germinacion`, `id_zona`) VALUES
 (7, 'Campanilla de invierno', 'Invierno', 6),
 (8, 'Cono de pino', 'Perenne', 2),
-(11, 'Romero', 'Otoño', 5),
 (13, 'Manzanilla', 'Verano', 7),
-(18, 'Margarita', 'Verano', 7),
 (19, 'Laurel', 'Invierno', 2),
 (20, 'Pétalos de rosa', 'Primavera', 7),
 (23, 'Lagrima ceniza', 'Otoño', 3),
-(24, 'Lagrima gris', 'Otoño', 2);
+(24, 'Lagrima gris', 'Otoño', 2),
+(25, 'Lagrima de fuego estelar', 'Perenne', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reseñas`
+--
+
+CREATE TABLE `reseñas` (
+  `id_review` int(11) NOT NULL,
+  `reseña` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `reseñas`
+--
+
+INSERT INTO `reseñas` (`id_review`, `reseña`) VALUES
+(1, 'esta flor es la mejor'),
+(3, 'aguante la manzanilla Nico Dazeo'),
+(4, 'Dottori volve'),
+(5, 'hola Franco'),
+(6, 'boca es mi pasion'),
+(7, 'a ver si se agrega esta poronga carcomida por murcielagos');
 
 -- --------------------------------------------------------
 
@@ -90,7 +112,6 @@ CREATE TABLE `zonas` (
 INSERT INTO `zonas` (`id_zona`, `zona`, `prefectura`, `ciudad_cercana`) VALUES
 (2, 'Bosque Sagano', 'Kioto', 'Nara'),
 (3, 'Cascada Nachi', 'Wakayama', 'Higashimuro'),
-(5, 'Monte Koya', 'Wakayama', 'Osaka'),
 (6, 'Monte Tokachi', 'Hokkaido', 'Daisetsuzan'),
 (7, 'Prado Kenrokuen', 'Ishikawa', 'Kanazawa'),
 (11, 'Volcán Aogashime', 'Izu', 'Aogashima');
@@ -105,6 +126,12 @@ INSERT INTO `zonas` (`id_zona`, `zona`, `prefectura`, `ciudad_cercana`) VALUES
 ALTER TABLE `recursos`
   ADD PRIMARY KEY (`id_recurso`),
   ADD KEY `index` (`id_zona`);
+
+--
+-- Indices de la tabla `reseñas`
+--
+ALTER TABLE `reseñas`
+  ADD PRIMARY KEY (`id_review`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -126,7 +153,13 @@ ALTER TABLE `zonas`
 -- AUTO_INCREMENT de la tabla `recursos`
 --
 ALTER TABLE `recursos`
-  MODIFY `id_recurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_recurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT de la tabla `reseñas`
+--
+ALTER TABLE `reseñas`
+  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
