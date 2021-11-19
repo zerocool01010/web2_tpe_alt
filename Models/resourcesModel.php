@@ -23,14 +23,23 @@
             return $resource;
         }
         
+        public function getAllReviews(){
+            $sentence = $this->db->prepare('SELECT * FROM reseñas WHERE 1');
+            $sentence->execute();
+
+            $reviews = $sentence->fetchAll(PDO::FETCH_OBJ);
+            return $reviews;
+        }
+
         public function addResource($resource, $season, $id_zone) {
             $sentence = $this->db->prepare('INSERT INTO recursos(recurso, germinacion, id_zona) VALUES(?, ?, ?)');
             $sentence->execute([$resource, $season, $id_zone]);
         }
         
-        public function addReview(){
-            $sentence = $this->db->prepare('INSERT INTO reseñas() VALUES(?)');
-            $sentence->execute();
+        public function addReview($review){
+            $sentence = $this->db->prepare('INSERT INTO reseñas(reseña) VALUES(?)');
+            $sentence->execute([$review]);
+            return $this->db->lastInsertId();
         }
 
         public function deleteResource($id) {

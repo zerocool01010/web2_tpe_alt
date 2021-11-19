@@ -12,10 +12,11 @@ class ApiResourcesController{
         $this->view = new ApiView();
     }
 
-    /* function obtenerTareas(){
-        $tareas = $this->model->getTasks(); 
-        return $this->view->response($tareas, 200); 
+     function getReviews(){
+        $reviews = $this->model->getAllReviews(); 
+        return $this->view->response($reviews, 200); 
     }
+    /*
 
     function obtenerTarea($params = null) { 
         $idTarea = $params[":ID"]; 
@@ -40,10 +41,9 @@ class ApiResourcesController{
     } */
 
     function insertReview() { 
-        /* $body = $this->getBody();  */
-        $saludo = "hola";
-        print_r($saludo);
-        $id = $this->model->addReview(); 
+        $body = $this->getBody(); 
+        print_r($body->reseña);
+        $id = $this->model->addReview($body->reseña); 
         if ($id != 0) {
             $this->view->response("La reseña se insertó con el id=$id", 200);
         } else {
@@ -63,11 +63,11 @@ class ApiResourcesController{
         } else {
             return $this->view->response("La tarea con el id=$idTarea no existe", 404);
         }
-    }
+    }*/
    
     private function getBody() {
         $bodyString = file_get_contents("php://input");
         return json_decode($bodyString); 
-    } */
+    } 
 
 }
