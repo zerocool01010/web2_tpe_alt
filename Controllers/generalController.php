@@ -20,16 +20,24 @@ class generalController{
     }
 
     public function verifyLogin(){
-        $u = $_POST['user'];
-        $p = $_POST['password'];
+        $u = $_POST['user']; // email ingresado por el usuario
+        $p = $_POST['password']; //password ingresado por el usuario
 
         $dbUser = $this->modelG->getUser($u);
-        $dbHash = $dbUser->pass;
+        $dbHash = $dbUser->pass; // en esta variable se guarda el hash traido de la db
+		$boolAdmin = $dbUser->administrador; // en esta variable se guarda el valor booleano sobre admin traido de la db
 
         if (!empty($dbUser) && password_verify($p, $dbHash)) {
-            session_start();
-            $_SESSION['user'] = $dbUser->email; 
-            header("Location:".BASE_URL."home");
+			if ($boolAdmin == 0) { //si el usuario no es admin...
+				session_start();
+				$_SESSION['user'] = $dbUser->email; 
+				header("Location:".BASE_URL."home");
+			}
+			if ($boolAdmin == 1){ //si el usuario es admin...
+				session_start();
+				$_SESSION['admin'] = $dbUser->email; 
+				header("Location:".BASE_URL."home");		
+			}
         } else {
             $this->view->renderErrorPage();
         }
