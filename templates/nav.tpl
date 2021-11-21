@@ -6,8 +6,7 @@
             <li class="nav-item"><a href="request/resources" class="nav-link">Ingresar al administrador de recursos</a></li>
             <li class="nav-item"><a href="request/zones" class="nav-link">Ingresar al administrador de zonas</a></li>
             <li class="nav-item"><a href="logout" class="nav-link">Desloguearse</a></li>
-		{/if}
-		{if isset($admin) || !empty($admin)}
+		{else if isset($admin) || !empty($admin)}
             <li class="nav-item welcome">Bienvenido, administrador {$admin|upper|truncate:13}</li>
             <li class="nav-item"><a href="requestZones" class="nav-link">Zonas</a></li>
             <li class="nav-item"><a href="request/resources" class="nav-link">Ingresar al administrador de recursos</a></li>
