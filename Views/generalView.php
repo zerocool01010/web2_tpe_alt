@@ -21,10 +21,10 @@ require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
 
         public function renderNav($userOrAdmin = "") {
             if ($userOrAdmin == true) {
-				if ($userOrAdmin === $_SESSION['user']){
+				if (array_key_exists('user', $_SESSION)){
 					$this->smarty->assign('user', $userOrAdmin);
 				}
-				if ($userOrAdmin === $_SESSION['admin']){
+				if (array_key_exists('admin', $_SESSION)){
 					$this->smarty->assign('admin', $userOrAdmin);
 				}
             }
