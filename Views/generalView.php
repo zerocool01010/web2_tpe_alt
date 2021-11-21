@@ -19,9 +19,14 @@ require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
             $this->smarty->display('templates/home.tpl');
         }
 
-        public function renderNav($user = "") {
-            if ($user == true) {
-                $this->smarty->assign('user', $user);
+        public function renderNav($userOrAdmin = "") {
+            if ($userOrAdmin == true) {
+				if ($userOrAdmin === $_SESSION['user']){
+					$this->smarty->assign('user', $userOrAdmin);
+				}
+				if ($userOrAdmin === $_SESSION['admin']){
+					$this->smarty->assign('admin', $userOrAdmin);
+				}
             }
         }
 
