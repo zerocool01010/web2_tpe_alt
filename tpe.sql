@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2021 a las 17:31:44
+-- Tiempo de generación: 21-11-2021 a las 19:04:53
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -69,7 +69,8 @@ INSERT INTO `reseñas` (`id_review`, `reseña`) VALUES
 (4, 'Dottori volve'),
 (5, 'hola Franco'),
 (6, 'boca es mi pasion'),
-(7, 'a ver si se agrega esta poronga carcomida por murcielagos');
+(7, 'a ver si se agrega esta poronga carcomida por murcielagos'),
+(8, 'cuando el tiempo pasa y nos hacemos viejos');
 
 -- --------------------------------------------------------
 
@@ -80,17 +81,18 @@ INSERT INTO `reseñas` (`id_review`, `reseña`) VALUES
 CREATE TABLE `usuarios` (
   `id_user` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `pass` varchar(150) NOT NULL
+  `pass` varchar(150) NOT NULL,
+  `administrador` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_user`, `email`, `pass`) VALUES
-(1, 'kohaku_kun@gmail.com', 'zeoQsYW0zXncI'),
-(2, 'hideyoshi_soga@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$eUlJRE04NTFxQlVFQVhvRg$8vN4P00ve6GROVQhmgNTT/0XtEedwaI0lXgRK9tvEXU'),
-(3, 'takeda_minamoto@gmail.com', '$2y$10$mxfNfse4dJLFDJX6xp1KDurGSGpmFHKzVoB.C3LfhhOLik9H/2crS');
+INSERT INTO `usuarios` (`id_user`, `email`, `pass`, `administrador`) VALUES
+(1, 'kohaku_kun@gmail.com', 'zeoQsYW0zXncI', 0),
+(2, 'hideyoshi_soga@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$eUlJRE04NTFxQlVFQVhvRg$8vN4P00ve6GROVQhmgNTT/0XtEedwaI0lXgRK9tvEXU', 1),
+(3, 'takeda_minamoto@gmail.com', '$2y$10$mxfNfse4dJLFDJX6xp1KDurGSGpmFHKzVoB.C3LfhhOLik9H/2crS', 0);
 
 -- --------------------------------------------------------
 
@@ -159,7 +161,7 @@ ALTER TABLE `recursos`
 -- AUTO_INCREMENT de la tabla `reseñas`
 --
 ALTER TABLE `reseñas`
-  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
