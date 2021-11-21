@@ -58,18 +58,15 @@ class generalController{
 
         if (isset($_SESSION['user'])) { // si estoy logueado como usuario debería pasar parametro
             $this->view->renderNav($_SESSION['user']);
-            $resources = $this->modelR->getResources();
-            $this->view->renderHome($resources);
         } 
 		if (isset($_SESSION['admin'])) { // si estoy logueado como admin debería pasar parametro
             $this->view->renderNav($_SESSION['admin']);
-            $resources = $this->modelR->getResources();
-            $this->view->renderHome($resources);
 		}
 		else {
             $this->view->renderNav();
-            $resources = $this->modelR->getResources();
-            $this->view->renderHome($resources);
         }
+
+        $resources = $this->modelR->getResources();
+        $this->view->renderHome($resources);
     }
 }
