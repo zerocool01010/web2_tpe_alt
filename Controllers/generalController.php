@@ -39,14 +39,6 @@ class generalController{
         $this->view->renderErrorPage();
     }
 
-    public function checkIfLogged(){
-        session_start();
-        if (!isset($_SESSION['user']) || empty($_SESSION['user'])){
-            $this->view->renderLogin();
-            die;
-        }
-    }
-
     public function logOut(){
         session_start();
         session_destroy();
