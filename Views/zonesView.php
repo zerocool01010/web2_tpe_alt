@@ -13,9 +13,6 @@ require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
         public function renderZonesForm($admin = "", $zones, $zone = "") {
             $this->smarty->assign('zones', $zones);
             $this->smarty->assign('zone', $zone);
-            /* $this->smarty->assign('prefecture', $prefecture);
-            $this->smarty->assign('id', $id);
-            $this->smarty->assign('city', $city); */
             $this->smarty->assign('admin', $admin);
             $this->smarty->display('templates/zonesForm.tpl');
         }
