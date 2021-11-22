@@ -10,12 +10,13 @@ require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
             $this->smarty->assign('BASE_URL', BASE_URL);
         }
 
-        public function renderZonesForm($zones, $zone = "", $prefecture = "", $id = "", $city = "") {
+        public function renderZonesForm($admin = "", $zones, $zone = "", $prefecture = "", $id = "", $city = "") {
             $this->smarty->assign('zones', $zones);
             $this->smarty->assign('zone', $zone);
             $this->smarty->assign('prefecture', $prefecture);
             $this->smarty->assign('id', $id);
             $this->smarty->assign('city', $city);
+            $this->smarty->assign('admin', $admin);
             $this->smarty->display('templates/zonesForm.tpl');
         }
 

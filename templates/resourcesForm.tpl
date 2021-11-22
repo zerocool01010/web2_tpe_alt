@@ -1,7 +1,8 @@
 {include file="header.tpl"}
 
-<h1 class="title">Registro de recursos</h1>
+<h1 class="title">Administración de recursos</h1>
 
+{if $admin}
 {if !empty($id)}
     <form action="updateResource" method="post">
         <input type="text" name="resource" value="{$resource}" required>
@@ -45,6 +46,7 @@
         </select>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
+{/if}
 {/if}
 
 {include file="resourcesTable.tpl"}

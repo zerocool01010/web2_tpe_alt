@@ -1,15 +1,21 @@
 <?php
 require_once './Models/zonesModel.php';
 require_once './Views/zonesView.php';
+require_once './Views/generalView.php';
+require_once './Helpers/AuthHelper.php';
 
 class zonesController{
 
     private $model;
     private $view;
+    private $viewU;
+    private $authHelper;
 
     function __construct() {
         $this->model = new zonesModel();
         $this->view = new zonesView();
+        $this->viewU = new generalView();
+        $this->authHelper = new AuthHelper();
     }
 
     public function goToZones() {
@@ -23,12 +29,22 @@ class zonesController{
     }
 
     public function goToTableZones() {
-        $zones = $this->model->getZones();
-        $this->view->renderZonesForm($zones);
+        if ($this->authHelper->checkIfLogged() XOR $this->authHelper->checkIfAdminLogged()) {
+            $zones = $this->model->getZones();
+            $admin = isset($_SESSION['admin']);
+            $this->view->renderZonesForm($admin, $zones);
+        } else {
+            $this->viewU->renderLogin();
+        }
     }
 
     public function goToAddZone(){
-        $this->model->addZone($_POST['zone'], $_POST['prefecture'], $_POST['city']);
+        if ($this->authHelper->checkIfAdminLogged()) {
+            $this->model->addZone($_POST['zone'], $_POST['prefecture'], $_POST['city']);
+            $this->goToTableZones();
+        } else {
+            $this->viewU->renderLogin();
+        }
     }
 
     public function goToDeleteZone($id_zone) {

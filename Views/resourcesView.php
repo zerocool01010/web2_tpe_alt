@@ -10,13 +10,20 @@ require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
             $this->smarty->assign('BASE_URL', BASE_URL);
         }
 
-        public function renderResourcesForm($resources, $zones, $id = "", $resource = "") {
+        public function renderResourcesForm($admin = "", $resources, $zones, $id = "", $resource = "") {
             $this->smarty->assign('id', $id);
             $this->smarty->assign('resource', $resource);
             $this->smarty->assign('resources', $resources);
             $this->smarty->assign('zones', $zones);
+            $this->smarty->assign('admin', $admin);
             $this->smarty->display('templates/resourcesForm.tpl');
         }
+
+        /* public function renderResourcesTable($resources, $zones) {
+            $this->smarty->assign('resources', $resources);
+            $this->smarty->assign('zones', $zones);
+            $this->smarty->display('templates/resourcesTable.tpl');
+        } */
 
         public function renderDetails($resource) {
             $this->smarty->assign('resource', $resource);

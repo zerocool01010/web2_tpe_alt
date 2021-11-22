@@ -1,7 +1,8 @@
 {include file="header.tpl"}
 
-<h1 class="title">Registro de zonas</h1>
+<h1 class="title">Administrador de zonas</h1>
 
+{if $admin}
 {if !empty($id)} 
     <form action="updateZone" method="post">
         <input type="text" name="zone" value="{$zone}" required>
@@ -19,6 +20,7 @@
         <input type="text" name="city" placeholder="Ciudad más cercana">
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
+{/if}
 {/if}
 
 {include file="zonesTable.tpl"}
