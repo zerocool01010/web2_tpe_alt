@@ -27,65 +27,64 @@ require_once 'Controllers/zonesController.php';
         case 'logout':
             $generalController->logOut();
             break;
+        case 'register': 
+            $generalController->goToRegisterUser();
+            break;
+        case 'registerUser':
+            $generalController->registerUser();
+            break;
         case 'verifyLogin':
-            $generalController->verifyLogin();
+            $generalController->verifyLogin($_POST['email'], $_POST['password']);
             break;
         case 'details':
             $resourcesController->goToDetails($parameters[1]);
             break;                                   
         case 'request':                                                                                          
-            $generalController->checkIfLogged();
             if ($parameters[1] == "resources") {
                 $resourcesController->goToTableResources();
             } else if ($parameters[1] == "zones") {
                 $zonesController->goToTableZones();
+            } else if ($parameters[1] == "panel") {
+                $generalController->goToPanel();
             }
             break;
         case 'add':
-            $generalController->checkIfLogged();
             if ($parameters[1] == "resource") {
                 $resourcesController->goToAddResource();
-                $resourcesController->goToTableResources();
             } else if ($parameters[1] == "zone") {
                 $zonesController->goToAddZone();
-                $zonesController->goToTableZones();
             }
             break;
         case 'delete':
-            $generalController->checkIfLogged();
             if ($parameters[1] == "resource") {
                 $resourcesController->goToDeleteResource($parameters[2]);
-                $resourcesController->goToTableResources();
             } else if ($parameters[1] == "zone") {
                 $zonesController->goToDeleteZone($parameters[2]);
-                $zonesController->goToTableZones();
+            } else if ($parameters[1] == "user") {
+                $generalController->goToDeleteUser($parameters[2]);
             }
             break;
         case 'warning':
-            $generalController->checkIfLogged();
-            $zonesController->goToWarning($parameters[1], $parameters[2]);
+            if ($parameters[1] == "zone") {
+                $zonesController->goToWarning($parameters[2]);
+            } else if ($parameters[1] == "panel") {
+                $generalController->goToWarning($parameters[2]);
+            }
             break;
         case 'getUpdate':
-            $generalController->checkIfLogged();
             if ($parameters[1] == "resource") {
-                $resourcesController->goToUpdatedResourcesForm($parameters[2], $parameters[3]);
+                $resourcesController->goToUpdatedResourcesForm($parameters[2]);
             } else if ($parameters[1] == "zone") {
-                if (isset($parameters[5])) {
-                    $zonesController->goToUpdatedZonesForm($parameters[2], $parameters[3], $parameters[4], $parameters[5]);
-                } else {
-                    $zonesController->goToUpdatedZonesForm($parameters[2], $parameters[3], $parameters[4]);
-                }
+                $zonesController->goToUpdatedZonesForm($parameters[2]);
+            } else if ($parameters[1] == "user") {
+                $generalController->goToChangeStatus($parameters[2]);
             }
             break;
         case 'updateResource':                    
-            $generalController->checkIfLogged();
             $resourcesController->goToUpdateResource();
-            $resourcesController->goToTableResources();
             break;
-        case 'updateZone':
-            $generalController->checkIfLogged();         
+        case 'updateZone':      
             $zonesController->goToUpdateZone();
-            $zonesController->goToTableZones();
             break;
         case 'requestZones':                       
             $zonesController->goToZones();

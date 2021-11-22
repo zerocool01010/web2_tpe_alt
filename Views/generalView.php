@@ -33,4 +33,24 @@ require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
         public function renderErrorPage() {
             $this->smarty->display('templates/errorPage.tpl');
         }
+
+        public function renderRegisterForm($warning = "") {
+            $this->smarty->assign('warning', $warning);
+            $this->smarty->display('templates/registerForm.tpl');
+        }
+
+        public function renderPanel($users, $admin) {
+            $this->smarty->assign('users', $users);
+            $this->smarty->assign('admin', $admin);
+            $this->smarty->display('templates/panel.tpl');
+        }
+
+        public function renderWarning($id, $deleted) {
+            $this->smarty->assign('id', $id);
+            $this->smarty->assign('deleted', "a $deleted");
+            $this->smarty->assign('risk', "comentarios y valoraciones");
+            $this->smarty->assign('param1', "user");
+            $this->smarty->assign('param2', "panel");
+            $this->smarty->display('templates/warning.tpl');
+        }
     }

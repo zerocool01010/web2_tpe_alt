@@ -1,10 +1,11 @@
 {include file="header.tpl"}
 
-<h1 class="title">Registro de recursos</h1>
+<h1 class="title">Administración de recursos</h1>
 
+{if $admin}
 {if !empty($id)}
     <form action="updateResource" method="post">
-        <input type="text" name="resource" value="{$resource}" required>
+        <input type="text" name="resource" value="{$resource->recurso}" required>
         <select name="season">
             <option hidden value="Error">Época de germinación</option required>
             <option value="Verano">Verano</option>
@@ -45,6 +46,7 @@
         </select>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
+{/if}
 {/if}
 
 {include file="resourcesTable.tpl"}

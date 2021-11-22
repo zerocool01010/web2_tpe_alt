@@ -10,8 +10,8 @@
 <p>Zona donde se encuentra: {$resource->zona}</p>
 <form id="form">
 <input placeholder="Introduce tu reseña de {$resource->recurso|lower}" type="text" size="110" id="review" name="review">
-<button type="submit" id="post">Enviar reseña!</button>
-<button type="submit" id="getAll">Ver reseñas anteriores!</button>
+<button type="submit" id="post" class="btn btn-primary">Enviar reseña!</button>
+<button type="submit" id="getAll" class="btn btn-primary">Ver reseñas anteriores!</button>
 </form>
 <ul id="list">
 </ul>

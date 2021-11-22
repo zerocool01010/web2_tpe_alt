@@ -3,8 +3,10 @@
         <th>Zona</th>
         <th>Prefectura</th>
         <th>Ciudad más cercana</th>
-        <th></th>
-        <th></th>
+        {if $admin}
+            <th></th>
+            <th></th>
+        {/if}
     </thead>
     <tbody>
         {foreach from=$zones item=$zone}
@@ -16,12 +18,14 @@
                 {else}
                     <td>--</td> 
                 {/if}
-                {if !empty($zone->ciudad_cercana)}
-                    <td><a href="{BASE_URL}getUpdate/zone/{$zone->zona}/{$zone->prefectura}/{$zone->id_zona}/{$zone->ciudad_cercana}">Modificar</a></td>
-                {else} 
-                    <td><a href="{BASE_URL}getUpdate/zone/{$zone->zona}/{$zone->prefectura}/{$zone->id_zona}">Modificar</a></td>
+                {if $admin}
+                    {if !empty($zone->ciudad_cercana)}
+                        <td><a href="{BASE_URL}getUpdate/zone/{$zone->id_zona}">Modificar</a></td>
+                    {else} 
+                        <td><a href="{BASE_URL}getUpdate/zone/{$zone->zona}/{$zone->prefectura}/{$zone->id_zona}">Modificar</a></td>
+                    {/if}
+                    <td><a href="{BASE_URL}warning/zone/{$zone->id_zona}">Eliminar</a></td>
                 {/if}
-                <td><a href="{BASE_URL}warning/{$zone->id_zona}/{$zone->zona}">Eliminar</a></td>
             </tr>
         {/foreach}
     </tbody>

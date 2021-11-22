@@ -1,10 +1,13 @@
+
 <table class="table table-light table-hover">
     <thead>
         <th>Recurso</th>
         <th>Germinación</th>
         <th>Zona</th>
-        <th></th>
-        <th></th>
+        {if $admin}
+            <th></th>
+            <th></th>
+        {/if}
     </thead>
     <tbody>
         {foreach from=$resources item=$resource}
@@ -16,8 +19,10 @@
                     <td>--</td> 
                 {/if}
                 <td>{$resource->zona}</td>
-                <td><a href="{BASE_URL}getUpdate/resource/{$resource->id_recurso}/{$resource->recurso}">Modificar</a></td>
-                <td><a href="{BASE_URL}delete/resource/{$resource->id_recurso}">Eliminar</a></td>
+                {if $admin}
+                    <td><a href="{BASE_URL}getUpdate/resource/{$resource->id_recurso}">Modificar</a></td>
+                    <td><a href="{BASE_URL}delete/resource/{$resource->id_recurso}">Eliminar</a></td>
+                {/if}
             </tr>
         {/foreach}
     </tbody>

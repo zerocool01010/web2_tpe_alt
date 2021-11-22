@@ -10,18 +10,19 @@ require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
             $this->smarty->assign('BASE_URL', BASE_URL);
         }
 
-        public function renderZonesForm($zones, $zone = "", $prefecture = "", $id = "", $city = "") {
+        public function renderZonesForm($admin = "", $zones, $zone = "") {
             $this->smarty->assign('zones', $zones);
             $this->smarty->assign('zone', $zone);
-            $this->smarty->assign('prefecture', $prefecture);
-            $this->smarty->assign('id', $id);
-            $this->smarty->assign('city', $city);
+            $this->smarty->assign('admin', $admin);
             $this->smarty->display('templates/zonesForm.tpl');
         }
 
-        public function renderWarning($id_zone, $zone) {
-            $this->smarty->assign('id_zone', $id_zone);
-            $this->smarty->assign('zone', $zone);
+        public function renderWarning($id, $deleted) {
+            $this->smarty->assign('id', $id);
+            $this->smarty->assign('deleted', $deleted);
+            $this->smarty->assign('risk', "recursos");
+            $this->smarty->assign('param1', "zone");
+            $this->smarty->assign('param2', "zones");
             $this->smarty->display('templates/warning.tpl');
         }
 
