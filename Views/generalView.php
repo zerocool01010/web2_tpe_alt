@@ -38,4 +38,10 @@ require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
             $this->smarty->assign('warning', $warning);
             $this->smarty->display('templates/registerForm.tpl');
         }
+
+        public function renderPanel($users, $admin) {
+            $this->smarty->assign('users', $users);
+            $this->smarty->assign('admin', $admin);
+            $this->smarty->display('templates/panel.tpl');
+        }
     }

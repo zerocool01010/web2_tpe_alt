@@ -33,6 +33,9 @@ require_once 'Controllers/zonesController.php';
         case 'registerUser':
             $generalController->registerUser();
             break;
+        case 'panel':
+            $generalController->goToPanel();
+            break;
         case 'verifyLogin':
             $generalController->verifyLogin($_POST['email'], $_POST['password']);
             break;
@@ -58,6 +61,8 @@ require_once 'Controllers/zonesController.php';
                 $resourcesController->goToDeleteResource($parameters[2]);
             } else if ($parameters[1] == "zone") {
                 $zonesController->goToDeleteZone($parameters[2]);
+            } else if ($parameters[1] == "user") {
+                $generalController->goToDeleteUser($parameters[2]);
             }
             break;
         case 'warning':
@@ -68,6 +73,8 @@ require_once 'Controllers/zonesController.php';
                 $resourcesController->goToUpdatedResourcesForm($parameters[2]);
             } else if ($parameters[1] == "zone") {
                 $zonesController->goToUpdatedZonesForm($parameters[2]);
+            } else if ($parameters[1] == "user") {
+                $generalController->goToChangeStatus($parameters[2]);
             }
             break;
         case 'updateResource':                    
