@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<h2>Bienvenido, ingrese sus datos de administrador</h2>
+<h2>Bienvenido, ingrese sus datos</h2>
 
 <form action="verifyLogin" method="POST">
         <input placeholder="Ingrese su email" type="text" name="user" required>
