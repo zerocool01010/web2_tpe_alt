@@ -20,7 +20,7 @@
                 {/if}
                 {if $admin}
                     {if !empty($zone->ciudad_cercana)}
-                        <td><a href="{BASE_URL}getUpdate/zone/{$zone->zona}/{$zone->prefectura}/{$zone->id_zona}/{$zone->ciudad_cercana}">Modificar</a></td>
+                        <td><a href="{BASE_URL}getUpdate/zone/{$zone->id_zona}">Modificar</a></td>
                     {else} 
                         <td><a href="{BASE_URL}getUpdate/zone/{$zone->zona}/{$zone->prefectura}/{$zone->id_zona}">Modificar</a></td>
                     {/if}

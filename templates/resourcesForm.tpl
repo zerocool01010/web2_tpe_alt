@@ -5,7 +5,7 @@
 {if $admin}
 {if !empty($id)}
     <form action="updateResource" method="post">
-        <input type="text" name="resource" value="{$resource}" required>
+        <input type="text" name="resource" value="{$resource->recurso}" required>
         <select name="season">
             <option hidden value="Error">Época de germinación</option required>
             <option value="Verano">Verano</option>

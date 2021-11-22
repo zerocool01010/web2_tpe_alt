@@ -52,13 +52,24 @@ class resourcesController{
     }
 
     public function goToDeleteResource($id) {
-        $this->modelR->deleteResource($id);
+        if ($this->authHelper->checkIfAdminLogged()) {
+            $this->modelR->deleteResource($id);
+            $this->goToTableResources();
+        } else {
+            $this->viewU->renderLogin();
+        }
     }
 
-    public function goToUpdatedResourcesForm($id, $resource) {
-        $resources = $this->modelR->getResources();
-        $zones = $this->modelZ->getZones();
-        $this->view->renderResourcesForm($resources, $zones, $id, $resource);
+    public function goToUpdatedResourcesForm($id) {
+        if ($this->authHelper->checkIfAdminLogged()) {
+            $resources = $this->modelR->getResources();
+            $resource = $this->modelR->getOneResource($id);
+            $zones = $this->modelZ->getZones();
+            $admin = isset($_SESSION['admin']);
+            $this->view->renderResourcesForm($admin, $resources, $zones, $id, $resource);
+        } else {
+            $this->viewU->renderLogin();
+        }
     }
 
     public function goToUpdateResource(){
@@ -66,7 +77,12 @@ class resourcesController{
             $this->view->renderErrorPage();
             die;
         } else {
-        $this->modelR->updateResource($_POST['resource'], $_POST['season'], $_POST['zone'], $_POST['id']);
+            if ($this->authHelper->checkIfAdminLogged()) {
+                $this->modelR->updateResource($_POST['resource'], $_POST['season'], $_POST['zone'], $_POST['id']);
+                $this->goToTableResources();
+            } else {
+                $this->viewU->renderLogin();
+            }
         }
     }
 

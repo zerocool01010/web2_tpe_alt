@@ -48,16 +48,32 @@ class zonesController{
     }
 
     public function goToDeleteZone($id_zone) {
-        $this->model->deleteZone($id_zone);
+        if ($this->authHelper->checkIfAdminLogged()) {
+            $this->model->deleteZone($id_zone);
+            $this->goToTableZones();
+        } else {
+            $this->viewU->renderLogin();
+        }
     }
 
-    public function goToUpdatedZonesForm($zone, $prefecture, $id, $city = "") {
-        $zones = $this->model->getZones();
-        $this->view->renderZonesForm($zones, $zone, $prefecture, $id, $city);
+    public function goToUpdatedZonesForm($id) {
+        if ($this->authHelper->checkIfAdminLogged()) {
+            $zone = $this->model->getOneZone($id);
+            $zones = $this->model->getZones();
+            $admin = isset($_SESSION['admin']);
+            $this->view->renderZonesForm($admin, $zones, $zone);
+        } else {
+            $this->viewU->renderLogin();
+        }
     }
 
     public function goToUpdateZone() {
-        $this->model->updateZone($_POST['zone'], $_POST['prefecture'], $_POST['city'], $_POST['id']);
+        if ($this->authHelper->checkIfAdminLogged()) {
+            $this->model->updateZone($_POST['zone'], $_POST['prefecture'], $_POST['city'], $_POST['id']);
+            $this->goToTableZones();
+        } else {
+            $this->viewU->renderLogin();
+        }
     }
 
     public function goToWarning($id_zone, $zone) {

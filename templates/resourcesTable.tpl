@@ -20,7 +20,7 @@
                 {/if}
                 <td>{$resource->zona}</td>
                 {if $admin}
-                    <td><a href="{BASE_URL}getUpdate/resource/{$resource->id_recurso}/{$resource->recurso}">Modificar</a></td>
+                    <td><a href="{BASE_URL}getUpdate/resource/{$resource->id_recurso}">Modificar</a></td>
                     <td><a href="{BASE_URL}delete/resource/{$resource->id_recurso}">Eliminar</a></td>
                 {/if}
             </tr>

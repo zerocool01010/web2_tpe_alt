@@ -3,13 +3,13 @@
 <h1 class="title">Administrador de zonas</h1>
 
 {if $admin}
-{if !empty($id)} 
+{if isset($zone->id_zona)} 
     <form action="updateZone" method="post">
-        <input type="text" name="zone" value="{$zone}" required>
-        <input type="text" name="prefecture" value="{$prefecture}" required>
-        <input type="text" name="city" placeholder="Ciudad más cercana" value="{$city}">
+        <input type="text" name="zone" value="{$zone->zona}" required>
+        <input type="text" name="prefecture" value="{$zone->prefectura}" required>
+        <input type="text" name="city" placeholder="Ciudad más cercana" value="{$zone->ciudad_cercana}">
         <select name="id">
-            <option>{$id}</option>
+            <option>{$zone->id_zona}</option>
         </select>
         <button type="submit" class="btn btn-primary">Modificar</button>
     </form>

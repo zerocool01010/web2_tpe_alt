@@ -15,6 +15,14 @@
             return $zones;
         }
 
+        public function getOneZone($id) {
+            $sentence = $this->db->prepare('SELECT * FROM zonas WHERE id_zona = ?');
+            $sentence->execute([$id]);
+
+            $zone = $sentence->fetch(PDO::FETCH_OBJ);
+            return $zone;
+        }
+
         public function addZone($zone, $prefecture, $city) {
             $sentence = $this->db->prepare('INSERT INTO zonas(zona, prefectura, ciudad_cercana) VALUES(?, ?, ?)');
             $sentence->execute([$zone, $prefecture, $city]);
