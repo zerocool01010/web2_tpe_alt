@@ -25,7 +25,7 @@
                 {else if $user->administrador == 0}
                     <td>No</td>
                     <td><a href="{BASE_URL}getUpdate/user/{$user->id_user}">Convertir en administrador</a></td>
-                    <td><a href="{BASE_URL}delete/user/{$user->id_user}">Eliminar</a></td>
+                    <td><a href="{BASE_URL}warning/panel/{$user->id_user}">Eliminar</a></td>
                 {/if}
             </tr>
         {/foreach}

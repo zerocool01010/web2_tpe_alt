@@ -76,7 +76,8 @@ class zonesController{
         }
     }
 
-    public function goToWarning($id_zone, $zone) {
-        $this->view->renderWarning($id_zone, $zone);
+    public function goToWarning($id) {
+        $zone = $this->model->getOneZone($id);
+        $this->view->renderWarning($id, $zone->zona);
     }
 }

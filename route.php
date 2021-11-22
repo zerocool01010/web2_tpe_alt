@@ -33,9 +33,6 @@ require_once 'Controllers/zonesController.php';
         case 'registerUser':
             $generalController->registerUser();
             break;
-        case 'panel':
-            $generalController->goToPanel();
-            break;
         case 'verifyLogin':
             $generalController->verifyLogin($_POST['email'], $_POST['password']);
             break;
@@ -47,6 +44,8 @@ require_once 'Controllers/zonesController.php';
                 $resourcesController->goToTableResources();
             } else if ($parameters[1] == "zones") {
                 $zonesController->goToTableZones();
+            } else if ($parameters[1] == "panel") {
+                $generalController->goToPanel();
             }
             break;
         case 'add':
@@ -66,7 +65,11 @@ require_once 'Controllers/zonesController.php';
             }
             break;
         case 'warning':
-            $zonesController->goToWarning($parameters[1], $parameters[2]);
+            if ($parameters[1] == "zone") {
+                $zonesController->goToWarning($parameters[2]);
+            } else if ($parameters[1] == "panel") {
+                $generalController->goToWarning($parameters[2]);
+            }
             break;
         case 'getUpdate':
             if ($parameters[1] == "resource") {

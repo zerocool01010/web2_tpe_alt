@@ -113,6 +113,11 @@ class generalController{
         $this->goToPanel();
     }
 
+    public function goToWarning($id) {
+        $user = $this->modelG->getUserById($id);
+        $this->view->renderWarning($id, $user->email);
+    }
+
     public function goToDeleteUser($id) { //la sesión de un usuario eliminado permanece abierta
         if ($this->authHelper->checkIfAdminLogged()) {
             $this->modelG->deleteUser($id);

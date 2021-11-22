@@ -24,7 +24,7 @@
                     {else} 
                         <td><a href="{BASE_URL}getUpdate/zone/{$zone->zona}/{$zone->prefectura}/{$zone->id_zona}">Modificar</a></td>
                     {/if}
-                    <td><a href="{BASE_URL}warning/{$zone->id_zona}/{$zone->zona}">Eliminar</a></td>
+                    <td><a href="{BASE_URL}warning/zone/{$zone->id_zona}">Eliminar</a></td>
                 {/if}
             </tr>
         {/foreach}

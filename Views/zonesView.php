@@ -17,9 +17,12 @@ require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
             $this->smarty->display('templates/zonesForm.tpl');
         }
 
-        public function renderWarning($id_zone, $zone) {
-            $this->smarty->assign('id_zone', $id_zone);
-            $this->smarty->assign('zone', $zone);
+        public function renderWarning($id, $deleted) {
+            $this->smarty->assign('id', $id);
+            $this->smarty->assign('deleted', $deleted);
+            $this->smarty->assign('risk', "recursos");
+            $this->smarty->assign('param1', "zone");
+            $this->smarty->assign('param2', "zones");
             $this->smarty->display('templates/warning.tpl');
         }
 
