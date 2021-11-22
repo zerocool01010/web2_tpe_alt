@@ -19,9 +19,9 @@ class generalController{
         $this->view->renderLogin();
     }
 
-    public function verifyLogin(){
-        $u = $_POST['user']; // email ingresado por el usuario
-        $p = $_POST['password']; //password ingresado por el usuario
+    public function verifyLogin($email, $password){
+        $u = $email; // email ingresado por el usuario
+        $p = $password; //password ingresado por el usuario
 
         $dbUser = $this->modelG->getUser($u);
         $dbHash = $dbUser->pass; // en esta variable se guarda el hash traido de la db
@@ -68,5 +68,19 @@ class generalController{
 
         $resources = $this->modelR->getResources();
         $this->view->renderHome($resources);
+    }
+
+    public function goToRegisterUser() {
+        $this->view->renderRegisterForm();
+    }
+
+    public function registerUser() {
+        if ($_POST['password'] === $_POST['checkpassword']) {
+            $encryptedPass = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $this->modelG->addUser($_POST['email'], $encryptedPass);
+            $this->verifyLogin($_POST['email'], $_POST['password']);    
+        } else {
+            $this->view->renderRegisterForm("Por favor, introduzca correctamente su contraseña");
+        }
     }
 }

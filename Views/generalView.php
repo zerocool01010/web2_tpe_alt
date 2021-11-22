@@ -33,4 +33,9 @@ require_once "./libs/smarty-3.1.39/libs/Smarty.class.php";
         public function renderErrorPage() {
             $this->smarty->display('templates/errorPage.tpl');
         }
+
+        public function renderRegisterForm($warning = "") {
+            $this->smarty->assign('warning', $warning);
+            $this->smarty->display('templates/registerForm.tpl');
+        }
     }

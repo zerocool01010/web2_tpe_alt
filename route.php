@@ -27,8 +27,14 @@ require_once 'Controllers/zonesController.php';
         case 'logout':
             $generalController->logOut();
             break;
+        case 'register': 
+            $generalController->goToRegisterUser();
+            break;
+        case 'registerUser':
+            $generalController->registerUser();
+            break;
         case 'verifyLogin':
-            $generalController->verifyLogin();
+            $generalController->verifyLogin($_POST['email'], $_POST['password']);
             break;
         case 'details':
             $resourcesController->goToDetails($parameters[1]);

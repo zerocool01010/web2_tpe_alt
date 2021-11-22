@@ -13,4 +13,9 @@
             $user = $sentence->fetch(PDO::FETCH_OBJ);
             return $user;
         }
+
+        public function addUser($email, $pass) {
+            $sentence = $this->db->prepare('INSERT INTO usuarios(email, pass, administrador) VALUES(?, ?, ?)');
+            $sentence->execute([$email, $pass, 0]);
+        }
     }
