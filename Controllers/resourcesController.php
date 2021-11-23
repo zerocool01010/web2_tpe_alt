@@ -43,7 +43,7 @@ class resourcesController{
             die;
         } else {
             if ($this->authHelper->checkIfAdminLogged()) {
-                $this->modelR->addResource($_POST['resource'], $_POST['season'], $_POST['zone']);
+                $this->modelR->addResource($_POST['resource'], $_POST['season'], $_POST['zone'], $_FILES['image']['tmp_name']);
                 $this->goToTableResources();        
             } else {
                 $this->viewU->renderLogin();
@@ -54,6 +54,19 @@ class resourcesController{
     public function goToDeleteResource($id) {
         if ($this->authHelper->checkIfAdminLogged()) {
             $this->modelR->deleteResource($id);
+            $this->goToTableResources();
+        } else {
+            $this->viewU->renderLogin();
+        }
+    }
+
+    public function goToDeleteImage($id) {
+        if ($this->authHelper->checkIfAdminLogged()) {
+            $resource = $this->modelR->getOneResource($id);
+            $filePath = $resource->imagen;
+            unlink($filePath);
+            
+            $this->modelR->deleteImage($id);
             $this->goToTableResources();
         } else {
             $this->viewU->renderLogin();
