@@ -48,12 +48,15 @@
             $sentence->execute([$resource, $season, $id_zone, $filePath]);
         }
         
-        public function addReview($review){
-            $sentence = $this->db->prepare('INSERT INTO reseñas(reseña) VALUES(?)');
-            $sentence->execute([$review]);
+        public function addReview($review, $value){ //esta funcion introduce una reseña y valoracion
+            $sentence = $this->db->prepare('INSERT INTO reseñas(reseña, valoracion) VALUES(?, ?)');
+            $sentence->execute(array($review, $value));
             return $this->db->lastInsertId();
         }
-
+		
+		public function updateReview(){ //esta funcion va a modificar la valoracion de una reseña existente
+			
+		}
         public function deleteResource($id) {
             $sentence = $this->db->prepare('DELETE FROM recursos WHERE id_recurso=?');
             $sentence->execute([$id]);

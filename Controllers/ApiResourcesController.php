@@ -40,15 +40,19 @@ class ApiResourcesController{
         }
     } */
 
-    function insertReview() { 
+    function insertReviewValue() { 
         $body = $this->getBody(); 
-        print_r($body->reseña);
-        $id = $this->model->addReview($body->reseña); 
-        if ($id != 0) {
-            $this->view->response("La reseña se insertó con el id=$id", 200);
-        } else {
-            $this->view->response("La reseña no se pudo insertar", 500);
-        }
+        /* print_r($body->reseña); */
+		if ($body->reseña/*  && $body->valoracion */){
+			$id = $this->model->addReview($body->reseña, $body->valoracion); 
+			if ($id != 0) {
+				$this->view->response("La reseña y valoracion se insertaron con el id=$id", 200);
+			} else {
+				$this->view->response("La reseña y valoracion no se pudieron insertar", 500);
+			}
+		} else {
+			$this->view->response("No se pudo decodear el json", 311);
+		}
     }
 
    /*  function actualizarTarea($params = null) { 

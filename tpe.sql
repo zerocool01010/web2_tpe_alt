@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2021 a las 13:05:41
+-- Tiempo de generación: 23-11-2021 a las 19:27:37
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -47,8 +47,7 @@ INSERT INTO `recursos` (`id_recurso`, `recurso`, `germinacion`, `id_zona`, `imag
 (20, 'Pétalos de rosa', 'Primavera', 7, ''),
 (23, 'Lágrima ceniza', 'Otoño', 2, ''),
 (24, 'Lágrima gris', 'Otoño', 11, ''),
-(26, 'Carne de jabalí', '', 2, ''),
-(35, 'Carbón activado', '', 11, 'images/619cc98ec7448.jpg');
+(26, 'Carne de jabalí', '', 2, '');
 
 -- --------------------------------------------------------
 
@@ -59,6 +58,7 @@ INSERT INTO `recursos` (`id_recurso`, `recurso`, `germinacion`, `id_zona`, `imag
 CREATE TABLE `reseñas` (
   `id_review` int(11) NOT NULL,
   `reseña` varchar(500) NOT NULL,
+  `valoracion` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_recurso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -67,14 +67,17 @@ CREATE TABLE `reseñas` (
 -- Volcado de datos para la tabla `reseñas`
 --
 
-INSERT INTO `reseñas` (`id_review`, `reseña`, `id_user`, `id_recurso`) VALUES
-(1, 'esta flor es la mejor', 0, 0),
-(3, 'aguante la manzanilla Nico Dazeo', 0, 0),
-(4, 'Dottori volve', 0, 0),
-(5, 'hola Franco', 0, 0),
-(6, 'boca es mi pasion', 0, 0),
-(7, 'a ver si se agrega esta poronga carcomida por murcielagos', 0, 0),
-(8, 'cuando el tiempo pasa y nos hacemos viejos', 0, 0);
+INSERT INTO `reseñas` (`id_review`, `reseña`, `valoracion`, `id_user`, `id_recurso`) VALUES
+(1, 'esta flor es la mejor', 0, 0, 0),
+(3, 'aguante la manzanilla Nico Dazeo', 0, 0, 0),
+(4, 'Dottori volve', 0, 0, 0),
+(5, 'hola Franco', 0, 0, 0),
+(6, 'boca es mi pasion', 0, 0, 0),
+(7, 'a ver si se agrega esta poronga carcomida por murcielagos', 0, 0, 0),
+(8, 'cuando el tiempo pasa y nos hacemos viejos', 0, 0, 0),
+(9, 'está muy buena la carne de jabali', 0, 0, 0),
+(10, 'lalala', 4, 0, 0),
+(11, 'laure aburrido', 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -168,7 +171,7 @@ ALTER TABLE `recursos`
 -- AUTO_INCREMENT de la tabla `reseñas`
 --
 ALTER TABLE `reseñas`
-  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

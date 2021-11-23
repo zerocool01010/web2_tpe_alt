@@ -7,6 +7,7 @@ btnGet.addEventListener("click", getReviews);
 const btnPost = document.querySelector("#post");
 btnPost.addEventListener("click", insertReview);
 
+
 async function getReviews(e) {
     e.preventDefault();
     let list = document.querySelector("#list");
@@ -33,9 +34,11 @@ async function insertReview(e){
     let form = document.querySelector("#form");
     let formData = new FormData(form);
     let reviewObj = {
-        "reseña": formData.get('review')
+        "reseña": formData.get('review'),
+		"valoracion": parseInt(formData.get('value'))
     }
     console.log(reviewObj);
+
     try {
         let res = await fetch (API_URL, {
             "method": "POST",
