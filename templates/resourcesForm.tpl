@@ -27,7 +27,7 @@
         <button type="submit" class="btn btn-primary">Modificar</button>
     </form>
 {else}
-    <form action="add/resource" method="post">
+    <form action="add/resource" method="post" enctype="multipart/form-data">
         <input type="text" name="resource" placeholder="Nombre del recurso" required>
         <select name="season">
             <option hidden value="Error">Época de germinación</option required>
@@ -44,6 +44,8 @@
             <option value="{$zone->id_zona}">{$zone->zona}</option>
             {/foreach}
         </select>
+        <label for="image">Inserte su imagen:</label>
+        <input type="file" name="image" accept="image/png, image/jpeg, image/jpg">
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 {/if}

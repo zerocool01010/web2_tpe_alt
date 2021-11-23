@@ -58,6 +58,8 @@ require_once 'Controllers/zonesController.php';
         case 'delete':
             if ($parameters[1] == "resource") {
                 $resourcesController->goToDeleteResource($parameters[2]);
+            } else if ($parameters[1] == "image") {
+                $resourcesController->goToDeleteImage($parameters[2]);
             } else if ($parameters[1] == "zone") {
                 $zonesController->goToDeleteZone($parameters[2]);
             } else if ($parameters[1] == "user") {

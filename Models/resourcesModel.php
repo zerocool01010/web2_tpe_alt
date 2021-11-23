@@ -16,7 +16,7 @@
         }
 
         public function getOneResource($id){ 
-            $sentence = $this->db->prepare('SELECT a.recurso, a.germinacion, b.zona FROM recursos AS a JOIN zonas AS b ON a.id_zona = b.id_zona WHERE a.id_recurso=?'); //llamo a un unico recurso que cumpla con la estacion y zona que llegan por parametro
+            $sentence = $this->db->prepare('SELECT a.recurso, a.germinacion, a.imagen, b.zona FROM recursos AS a JOIN zonas AS b ON a.id_zona = b.id_zona WHERE a.id_recurso=?'); //llamo a un unico recurso que cumpla con la estacion y zona que llegan por parametro
             $sentence->execute(array($id));
 
             $resource = $sentence->fetch(PDO::FETCH_OBJ);
@@ -31,9 +31,21 @@
             return $reviews;
         }
 
-        public function addResource($resource, $season, $id_zone) {
-            $sentence = $this->db->prepare('INSERT INTO recursos(recurso, germinacion, id_zona) VALUES(?, ?, ?)');
-            $sentence->execute([$resource, $season, $id_zone]);
+        private function uploadImage($image) {
+            $filePath = 'images/' . uniqid() . "." . strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+            move_uploaded_file($image, $filePath);
+            
+            return $filePath;
+        }
+
+        public function addResource($resource, $season, $id_zone, $image = null) {
+            $filePath = null;
+            if ($image) {
+                $filePath = $this->uploadImage($image);
+            }
+
+            $sentence = $this->db->prepare('INSERT INTO recursos(recurso, germinacion, id_zona, imagen) VALUES(?, ?, ?, ?)');
+            $sentence->execute([$resource, $season, $id_zone, $filePath]);
         }
         
         public function addReview($review){
@@ -44,6 +56,11 @@
 
         public function deleteResource($id) {
             $sentence = $this->db->prepare('DELETE FROM recursos WHERE id_recurso=?');
+            $sentence->execute([$id]);
+        }
+
+        public function deleteImage($id) {
+            $sentence = $this->db->prepare('UPDATE recursos SET imagen=NULL WHERE id_recurso=?');
             $sentence->execute([$id]);
         }
 
