@@ -25,11 +25,11 @@ class AuthHelper {
 		session_start();
         if (isset($_SESSION['admin']) || !empty($_SESSION['admin'])){
             /* $this->view->renderLogin(); */
-            session_abort();
-            return true;
+            session_abort(); //por qué va antes el session abort?
+            return true; //devuelve TRUE para así poder pasar el if en los chequeos en los controller
         } else {
             session_abort();
-            return false;
+            return false; //same logic que arriba
         }
 	}
 	

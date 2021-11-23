@@ -35,12 +35,12 @@
             return $user;
         }
 
-        public function addUser($email, $pass) {
+        public function addUser($email, $pass) { //inserta un nuevo usuario en la tabla
             $sentence = $this->db->prepare('INSERT INTO usuarios(email, pass, administrador) VALUES(?, ?, ?)');
             $sentence->execute([$email, $pass, 0]);
         }
 
-        public function deleteUser($id) {
+        public function deleteUser($id) { //elimina usuario por id
             $sentence = $this->db->prepare('DELETE FROM usuarios WHERE id_user=?');
             $sentence->execute([$id]);
         }
