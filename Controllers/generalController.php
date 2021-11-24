@@ -97,6 +97,15 @@ class generalController{
         }
     }
 
+    public function goToReviewsPanel(){
+        if ($this->authHelper->checkIfAdminLogged()) {
+            $reviews = $this->modelR->getAllReviews();
+            $this->view->renderReviewsPanel($reviews);
+        } else {
+            $this->view->renderLogin();
+        }
+    }
+
     public function goToChangeStatus($id) { //aca viene el id del usuario a modificar en el panel
         if ($this->authHelper->checkIfAdminLogged()) { //aca se fija si está sesionando el admin
             $user = $this->modelG->getUserById($id); //trae un usuario unico por id
@@ -114,9 +123,15 @@ class generalController{
         $this->goToPanel();
     }
 
-    public function goToWarning($id) { // aca viene el id del usuario
-        $user = $this->modelG->getUserById($id); //trae el usuario por id
-        $this->view->renderWarning($id, $user->email); //renderizo la advertencia con el email del usuario y el id por param
+    public function goToWarning($param1, $id) { // aca viene el param1 y id del usuario o la review
+        if ($param1 == "zone" || $param1 == "panel") {
+            $user = $this->modelG->getUserById($id); //trae el usuario por id
+            $this->view->renderWarning($id, $user->email); //renderizo la advertencia con el email del usuario y el id por param
+        } else if ($param1 == "review"){
+            /* $this->view->renderWarning($id); */
+            $this->view->renderWarningReviews($id);
+        }
+        
     }
 
     public function goToDeleteUser($id) { // viene el id del warning.tpl //la sesión de un usuario eliminado permanece abierta

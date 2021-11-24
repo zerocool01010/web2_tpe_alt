@@ -46,6 +46,8 @@ require_once 'Controllers/zonesController.php';
                 $zonesController->goToTableZones();
             } else if ($parameters[1] == "panel") {
                 $generalController->goToPanel();
+            } else if ($parameters[1] == "panel-reviews") {
+                $generalController->goToReviewsPanel();
             }
             break;
         case 'add':
@@ -68,9 +70,11 @@ require_once 'Controllers/zonesController.php';
             break;
         case 'warning':
             if ($parameters[1] == "zone") {
-                $zonesController->goToWarning($parameters[2]);
+                $zonesController->goToWarning($parameters[1], $parameters[2]);
             } else if ($parameters[1] == "panel") {
-                $generalController->goToWarning($parameters[2]);
+                $generalController->goToWarning($parameters[1], $parameters[2]);
+            } else if ($parameters[1] == "review") {
+                $generalController->goToWarning($parameters[1], $parameters[2]);
             }
             break;
         case 'getUpdate':

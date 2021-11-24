@@ -14,6 +14,8 @@ class ApiView{
         $status = array( 
             200 => "OK",
 			311 => "Decoding failed",
+            315 => "Not a registered user",
+            316 => "Not an admin user",
             404 => "Not found",
             500 => "Internal Server Error",
             501 => "Internal Error in Tasks web"

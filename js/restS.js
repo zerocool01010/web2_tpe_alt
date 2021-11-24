@@ -6,7 +6,8 @@ const btnGet = document.querySelector("#getAll");
 btnGet.addEventListener("click", getReviews);
 const btnPost = document.querySelector("#post");
 btnPost.addEventListener("click", insertReview);
-
+const btnDelete = document.querySelector("#delete");
+btnDelete.addEventListener("click", deleteReview);
 
 async function getReviews(e) {
     e.preventDefault();
@@ -49,6 +50,22 @@ async function insertReview(e){
             console.log("Datos cargados!");
         }
     } catch (error){
+        console.error();
+    }
+}
+
+async function deleteReview(e){
+    e.preventDefault();
+    let id = document.querySelector("#id-review").value;
+    console.log("hola");
+    try {
+        let res = await fetch (`${API_URL}/${id}`, {
+            "method": "DELETE"
+        });
+        if (res.status == 200) {
+            console.log("Datos eliminados!");
+        }
+    } catch(error) {
         console.error();
     }
 }

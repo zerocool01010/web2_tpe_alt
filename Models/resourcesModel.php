@@ -31,6 +31,14 @@
             return $reviews;
         }
 
+        public function getOneReview($id){
+            $sentence = $this->db->prepare('SELECT * FROM reseñas WHERE id_review = ?');
+            $sentence->execute([$id]);
+
+            $review = $sentence->fetch(PDO::FETCH_OBJ);
+            return $review;
+        }
+
         private function uploadImage($image) {
             $filePath = 'images/' . uniqid() . "." . strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
             move_uploaded_file($image, $filePath);
@@ -49,14 +57,16 @@
         }
         
         public function addReview($review, $value){ //esta funcion introduce una reseña y valoracion
-            $sentence = $this->db->prepare('INSERT INTO reseñas(reseña, valoracion) VALUES(?, ?)');
+            $sentence = $this->db->prepare('INSERT INTO reseñas(review, valoracion) VALUES(?, ?)');
             $sentence->execute(array($review, $value));
             return $this->db->lastInsertId();
         }
 		
-		public function updateReview(){ //esta funcion va a modificar la valoracion de una reseña existente
-			
+		public function deleteReview($id){
+            $sentence = $this->db->prepare('DELETE FROM reseñas WHERE id_review = ?');
+            $sentence->execute([$id]);
 		}
+
         public function deleteResource($id) {
             $sentence = $this->db->prepare('DELETE FROM recursos WHERE id_recurso=?');
             $sentence->execute([$id]);
